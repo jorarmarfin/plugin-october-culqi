@@ -1,0 +1,5 @@
+fields:
+    publicKey:
+        span: left
+        label: Public Key
+        commentAbove: PublicKey from culqi https://www.culqi.com/

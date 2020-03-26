@@ -1,0 +1,6 @@
+plugin:
+    name: 'luismayta.culqi::lang.plugin.name'
+    description: 'luismayta.culqi::lang.plugin.description'
+    author: 'Luis Mayta'
+    icon: oc-icon-dollar
+    homepage: ''
