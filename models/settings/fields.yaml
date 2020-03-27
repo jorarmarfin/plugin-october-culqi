@@ -1,5 +1,9 @@
 fields:
-    publicKey:
+    secret_Key:
+        span: left
+        label: Secret Key
+        commentAbove: Secret Key from culqi https://www.culqi.com/
+    public_Key:
         span: left
         label: Public Key
-        commentAbove: PublicKey from culqi https://www.culqi.com/
+        commentAbove: Public Key from culqi https://www.culqi.com/

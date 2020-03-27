@@ -1,18 +1,73 @@
-<!-- Incluye Culqi Checkout en tu sitio web-->
-<script>
+    //Incluye Culqi Checkout en tu sitio web
+
+    var v_publickey = $('#publicKey').val();
+    var v_title = $('#title').val();
+    var v_currency = $('#currency').val();
+    var v_description = $('#description').val();
+    var v_amount = $('#amount').val();
     // Configura tu llave pública
-    Culqi.publicKey = '{{ publicKey }}';
+    Culqi.publicKey = v_publickey;
     // Configura tu Culqi Checkout
     Culqi.settings({
-        title: 'Culqi Store',
-        currency: 'PEN',
-        description: '{{record.nombre}}',
-        amount: {{record.precio}}
+        title: v_title,
+        currency: v_currency,
+        description: v_description,
+        amount:v_amount
     });
     // Usa la funcion Culqi.open() en el evento que desees
-    $('#BtnWillyShop').on('click', function(e) {
+    $('#buyButton').on('click', function(e) {
         // Abre el formulario con la configuración en Culqi.settings
         Culqi.open();
         e.preventDefault();
     });
-</script>
+    $('#btntest').on('click',function(e){
+        $.request('onCrearCargo',{
+            data:{
+                precio:v_amount,
+                moneda:v_currency,
+                token:55,
+            },
+            success: function(data) {
+                console.log(data.result);
+            }
+            //update:{ 'Pasarela::message':'#myDiv'}
+        })
+
+    });
+    function mypasarela(data) {
+        $.request('onCrearCargo',{
+            data:{
+                precio:v_amount,
+                moneda:v_currency,
+                token:55,
+            },
+            success: function(data) {
+                console.log(data.result);
+            }
+            //update:{ 'Pasarela::message':'#myDiv'}
+        })
+
+    }
+    console.log('0.10');
+    function culqi() {
+        if (Culqi.token) { // ¡Objeto Token creado exitosamente!
+            console.log(Culqi.token.id)
+            $.request('onCrearCargo',{
+                data:{
+                    precio:v_amount,
+                    moneda:v_currency,
+                    email:Culqi.token.email,
+                    token:Culqi.token.id,
+                },
+                // success: function(data) {
+                //     console.log(data.result);
+                // }
+                update:{ 'Pasarela::message':'#myDiv'}
+            })
+
+        } else { // ¡Hubo algún problema!
+            // Mostramos JSON de objeto error en consola
+            console.log(Culqi.error);
+            alert(Culqi.error.user_message);
+        }
+      };
