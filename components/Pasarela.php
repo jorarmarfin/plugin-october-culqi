@@ -33,6 +33,7 @@ class Pasarela extends ComponentBase
             "email"         => post('email'),
             "source_id"     => post('token')
         ]);
+        UserCurso::create(['user_id'=>$user->id,'curso_id'=>post('curso')]);
         $this->page['result'] = 'Compra realizada ';
 
     }

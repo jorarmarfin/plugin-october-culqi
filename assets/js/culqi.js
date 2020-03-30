@@ -1,6 +1,7 @@
     //Incluye Culqi Checkout en tu sitio web
 
     var v_publickey = $('#publicKey').val();
+    var v_curso = $('#curso').val();
     var v_title = $('#title').val();
     var v_currency = $('#currency').val();
     var v_description = $('#description').val();
@@ -20,40 +21,13 @@
         Culqi.open();
         e.preventDefault();
     });
-    $('#btntest').on('click',function(e){
-        $.request('onCrearCargo',{
-            data:{
-                precio:v_amount,
-                moneda:v_currency,
-                token:55,
-            },
-            success: function(data) {
-                console.log(data.result);
-            }
-            //update:{ 'Pasarela::message':'#myDiv'}
-        })
-
-    });
-    function mypasarela(data) {
-        $.request('onCrearCargo',{
-            data:{
-                precio:v_amount,
-                moneda:v_currency,
-                token:55,
-            },
-            success: function(data) {
-                console.log(data.result);
-            }
-            //update:{ 'Pasarela::message':'#myDiv'}
-        })
-
-    }
     console.log('0.10');
     function culqi() {
         if (Culqi.token) { // ¡Objeto Token creado exitosamente!
             console.log(Culqi.token.id)
             $.request('onCrearCargo',{
                 data:{
+                    curso:v_curso,
                     precio:v_amount,
                     moneda:v_currency,
                     email:Culqi.token.email,
